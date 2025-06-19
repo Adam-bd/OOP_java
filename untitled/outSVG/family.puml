@@ -1,0 +1,15 @@
+@startuml
+object "Marek Kowalski" as MarekKowalski
+ #666666
+object "Andrzej Kowalski" as AndrzejKowalski
+ #666666
+object "Krystyna Dąbrowska" as KrystynaDąbrowska
+ #666666
+object "Anna Dąbrowska" as AnnaDąbrowska
+ #666666
+
+MarekKowalski<--AndrzejKowalski
+MarekKowalski<--KrystynaDąbrowska
+MarekKowalski<--AnnaDąbrowska
+
+@enduml
