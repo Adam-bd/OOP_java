@@ -12,7 +12,7 @@ public class DatabaseConnection {
     }
 
     public void connect(String path) throws SQLException {
-        DriverManager.getConnection("jdbc:sqlite:" + path);
+        connection = DriverManager.getConnection("jdbc:sqlite:" + path);
         System.out.println("Połączono");
     }
     public void disconnect() throws SQLException {

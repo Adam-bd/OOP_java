@@ -15,7 +15,7 @@ public class AccountManager {
 
     public int register(String name, String password) throws SQLException {
         PreparedStatement preparedStatement = connection.getConnection()
-                .prepareStatement("SELECT * FROM auth_account WHERE name ?;");
+                .prepareStatement("SELECT * FROM auth_account WHERE name = ?;");
         preparedStatement.setString(1, name);
 
         preparedStatement.execute();
@@ -38,6 +38,29 @@ public class AccountManager {
         statement.setString(1, name);
         statement.execute();
 
-        
+        ResultSet result = statement.getResultSet();
+        if(result.next()){
+            String hashedPassword = result.getString("password");
+            BCrypt.Result cryptResult = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
+            return cryptResult.verified;
+        } else{
+            throw new RuntimeException("No such user " + name);
+        }
+    }
+
+    public Account getAccount(String name) throws SQLException {
+        PreparedStatement statement = connection.getConnection()
+                .prepareStatement("SELECT id, name FROM auth_account WHERE name = ?;");
+
+        statement.setString(1, name);
+        statement.execute();
+
+        ResultSet result = statement.getResultSet();
+        if(result.next()){
+            int id = result.getInt("id");
+            return new Account(id, name);
+        } else{
+            throw new RuntimeException("No such user " + name);
+        }
     }
 }
