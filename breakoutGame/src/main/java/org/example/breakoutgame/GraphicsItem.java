@@ -10,11 +10,16 @@ public abstract class GraphicsItem {
     protected double width;
     protected double height;
 
-    public static void setCanvasWidth(double canvasWidth) {
-        GraphicsItem.canvasWidth = canvasWidth;
-    }
+//    public static void setCanvasWidth(double canvasWidth) {
+//        GraphicsItem.canvasWidth = canvasWidth;
+//    }
+//
+//    public static void setCanvasHeight(double canvasHeight) {
+//        GraphicsItem.canvasHeight = canvasHeight;
+//    }
 
-    public static void setCanvasHeight(double canvasHeight) {
+    public static void setCanvasSize(double canvasWidth, double canvasHeight) {
+        GraphicsItem.canvasWidth = canvasWidth;
         GraphicsItem.canvasHeight = canvasHeight;
     }
 

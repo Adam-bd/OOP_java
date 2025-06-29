@@ -1,24 +1,26 @@
 package org.example.breakoutgame;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         GameCanvas gameCanvas = new GameCanvas();
 
-//      FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        Scene scene = new Scene(new Pane(gameCanvas));
+        GridPane pane = new GridPane();
+        pane.add(gameCanvas, 0, 0);
+        stage.setScene(new Scene(pane));
+
+
+        gameCanvas.initialize();
         gameCanvas.draw();
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

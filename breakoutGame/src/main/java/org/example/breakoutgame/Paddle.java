@@ -16,4 +16,10 @@ public class Paddle extends GraphicsItem{
         graphicsContext.setFill(Color.RED);
         graphicsContext.fillRect(x, y, width, height);
     }
+    public void setPosition(double x){
+        this.x = clamp(x - width/2, 0, canvasWidth - width);
+    }
+    public static double clamp(double val, double min, double max){
+        return Math.max(min, Math.min(max, val));
+    }
 }
